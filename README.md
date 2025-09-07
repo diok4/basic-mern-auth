@@ -1,4 +1,3 @@
-//.env
 MONGODB_URI=
 JWT_SECRET=
 PORT=5000
