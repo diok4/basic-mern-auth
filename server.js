@@ -1,30 +1,40 @@
 import express from "express";
 import cors from "cors";
-import "dotenv/config";
-import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 import connectDB from "./config/mongodb.js";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoute.js";
 
+dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 5000;
-connectDB();
 
-dotenv.config();
+connectDB();
 
 app.use(express.json());
 app.use(cookieParser());
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://devnote-ai-client.vercel.app",
+  "https://devnote-ai-client-e8nqjj4eg-diok4-projects.vercel.app",
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://vercel.com/diok4-projects/devnote-ai-client",
-    ],
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, origin);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
-// API Endpoints
+
 app.get("/", (req, res) => {
   res.send("Hi from the server!");
 });
