@@ -17,7 +17,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: true,
+    origin: [
+      "http://localhost:5173",
+      "https://vercel.com/diok4-projects/devnote-ai-client",
+    ],
     credentials: true,
   })
 );
