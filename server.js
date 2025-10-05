@@ -19,7 +19,8 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://blogspace-client.vercel.app/",
+  "https://blogspace-client.vercel.app",
+  "https://devnote-ai-client-e8nqjj4eg-diok4-projects.vercel.app",
 ];
 
 app.use(
