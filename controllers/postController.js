@@ -16,6 +16,7 @@ export const createPost = async (req, res) => {
         username: user.username,
         avatar: user.avatar,
       },
+      title,
       text,
       photo,
     });
