@@ -4,7 +4,7 @@ import User from "../model/userModel.js"; // чтобы брать username и a
 // создать пост
 export const createPost = async (req, res) => {
   try {
-    const { text, photo } = req.body;
+    const { title, text, photo } = req.body;
 
     // достаём юзера из базы
     const user = await User.findById(req.body.userId).select("username avatar");
